@@ -1,0 +1,13 @@
+using CinePass_be.Models;
+
+namespace CinePass_be.Repositories;
+
+public interface IUserRepository
+{
+  Task<List<User>> GetAllAsync();
+  Task<User?> GetByIdAsync(int id);
+  Task<User?> GetByEmailAsync(string email);
+  Task<User?> GetByUsernameAsync(string username);
+  Task<User> CreateUserAsync(User user);
+  Task<User> UpdateUserAsync(User user);
+}
