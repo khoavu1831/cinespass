@@ -17,7 +17,7 @@ const MovieManagement = () => {
   const fetchMovies = async () => {
     try {
       setLoading(true);
-      const res = await axiosClient.get(`/movies?search=${search}&page=1&pageSize=50`);
+      const res = await axiosClient.get(`/movies?search=${encodeURIComponent(search)}&page=1&pageSize=50`);
       setMovies(res.data.data || res.data || []);
     } catch (error) {
       toast.error("Lỗi khi tải danh sách phim");
@@ -42,7 +42,7 @@ const MovieManagement = () => {
       }
       try {
         setIsSearchingTmdb(true);
-        const res = await axiosClient.get(`/admin/tmdb/search?query=${tmdbSearchQuery}`);
+        const res = await axiosClient.get(`/admin/movies/tmdb/search?query=${encodeURIComponent(tmdbSearchQuery)}`);
         setTmdbResults(res.data.data || []);
       } catch (error) {
         toast.error("Lỗi khi tìm kiếm TMDB");
